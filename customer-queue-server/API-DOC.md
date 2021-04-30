@@ -198,7 +198,7 @@ Response:
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
     ```json
     {
@@ -373,7 +373,7 @@ Response:
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 200 OK <br />
     **Content:** 
     ```json
     {
