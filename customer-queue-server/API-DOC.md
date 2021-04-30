@@ -1,7 +1,7 @@
-**BUDGET APPLICATION API DOCUMENTATION**
+**CUSTOMER QUEUE MANAGEMENT APPLICATION API DOCUMENTATION**
 ----
 
-BUDGET APPLICATION is app that track our income, expenses and the balance, and all the data is stored / fetched via REST API to backend server. 
+CUSTOMER QUEUE MANAGEMENT is app untuk mendaftarkan seorang pasien yang ingin berobat ke rumah sakit, and all the data is stored / fetched via REST API to backend server. 
 This app has :
 * RESTful endpoint
 * JSON formatted response
@@ -10,10 +10,9 @@ List of available endpoints:
 ​
 - `POST /users/register`
 - `POST /users/login`
-- `POST /budget/`
-- `POST /budget/income`
-- `POST /budget/expense`
-- `DELETE /budget/:_id`
+- `POST /customers/`
+- `GET /customers/`
+- `PUT /customers/:_id`
 
 ### `POST /users/register`
 
@@ -52,7 +51,9 @@ Response:
 * **Success Response:**
 
   * **Code:** 201 CREATED<br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
         "user": {
           "username": "test",
           "email": "test@mail.com",
@@ -60,23 +61,30 @@ Response:
           "_id": "60803b1f1a34192140d9a646"
       },
       "message": "Add new User successfully"
-    }`
+    }
+    ```
  
 * **Error Response:**
 
   * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
       "errorCode": "Validation error",
       "message": "Please enter username, email and password"
-    }`
+    }
+    ```
 
   OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
         "errorCode": "Internal server error",
         "message": "Unexpected error."
-    }`
+    }
+    ```
 
 ### `POST /users/login`
 
@@ -109,32 +117,133 @@ Response:
 * **Success Response:**
 
   * **Code:** 201 CREATED<br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
       "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwM2IxZjFhMzQxOTIxNDBkOWE2NDYiLCJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpYXQiOjE2MTkwMjM5NTF9.DUqmaiDpave2Wi3HUkA6QAMxuUM6KP-obD_alXJreVg",
       "id": "60803b1f1a34192140d9a646",
       "username": "test"
-    }`
+    }
+    ```
  
 * **Error Response:**
 
   * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
       "errorCode": "Validation error",
       "message": "Please enter email and password"
-    }`
+    }
+    ```
 
   OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
         "errorCode": "Internal server error",
         "message": "Unexpected error."
-    }`
+    }
+    ```
 
 
-### `GET /budget/`
+### `POST /customers/`
 
-> Get list of all budget (where they have UserId for user)
+> Create new Customer
+
+Request:
+
+- headers:
+
+```json
+{
+  "access_token": "req.headers access_token
+}
+```
+
+- data:
+
+```json
+{
+  "income": "string",
+  "detail": "string"
+}
+```
+
+Response:
+
+- status: 201
+- body:
+  ​
+
+```json
+{
+  "nama": "string",
+  "umur": "integer",
+  "jenisKelamin": "string",
+  "pekerjaan": "string",
+  "namaIbu": "string",
+  "kota": "string",
+  "agama": "string",
+  "golDarah": "string",
+  "noKtp": "integer",
+  "tanggalDaftar": "date",
+  "tujuanPasien": "string",
+  "status": "boolean",
+  "_id": "objectid mongodb"
+}
+```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    {
+      "nama": "user1",
+      "umur": 20,
+      "jenisKelamin": "Laki-laki",
+      "pekerjaan": "Dagang",
+      "namaIbu": "userIbu",
+      "kota": "Tegal",
+      "agama": "Islam",
+      "golDarah": "B",
+      "noKtp": 3376031508960001,
+      "tanggalDaftar": "2021-04-30T17:33:45.621Z",
+      "tujuanPasien": "Copot jahitan",
+      "status": false,
+      "_id": "608c3f79bb73ae4742b2dd23"
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```json
+    {
+      "errorCode": "Validation error",
+      "message": "Input invalid"
+    }
+    ```
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** 
+    ```json
+    {
+        "errorCode": "Internal server error",
+        "message": "Unexpected error."
+    }
+    ```
+
+
+### `GET /customers/`
+
+> Get list of all Customer 
 
 Request:
 
@@ -168,52 +277,85 @@ Response:
 * **Success Response:**
 
   * **Code:** 200 OK<br />
-    **Content:** `{
-      "budget": [
-        {
-            "_id": "60808c77f8e54b018c61aff8",
-            "UserId": "60803b1f1a34192140d9a646",
-            "expense": 15000,
-            "detail": "Bayar Cicilan",
-            "createdAt": "2021-04-21T20:35:03.961Z"
-        },
-        {
-            "_id": "60808c48a0d8c6392c4d2205",
-            "UserId": "60803b1f1a34192140d9a646",
-            "income": 100000,
-            "detail": "Gajian",
-            "createdAt": "2021-04-21T20:34:16.976Z"
-        },
-        ...
-      ]
-    },`
+    **Content:** 
+    ```json 
+    {
+      "dataCustomer": [
+          {
+            "_id": "608c3f79bb73ae4742b2dd23",
+            "nama": "user1",
+            "umur": 20,
+            "jenisKelamin": "Laki-laki",
+            "pekerjaan": "Dagang",
+            "namaIbu": "userIbu",
+            "kota": "Tegal",
+            "agama": "Islam",
+            "golDarah": "B",
+            "noKtp": "3376031508960001",
+            "tanggalDaftar": "2021-04-30T17:33:45.621Z",
+            "tujuanPasien": "Copot jahitan",
+            "status": false
+          },
+          {
+            "_id": "608c3c6cea93293de14eaee4",
+            "nama": "user1",
+            "umur": 20,
+            "jenisKelamin": "Laki-laki",
+            "pekerjaan": "Dagang",
+            "namaIbu": "userIbu",
+            "kota": "Tegal",
+            "agama": "Islam",
+            "golDarah": "B",
+            "noKtp": "3376031508960001",
+            "tanggalDaftar": "2021-04-30T17:20:44.794Z",
+            "tujuanPasien": "Copot jahitan",
+            "status": true
+          },
+          ....
+        ]
+      }
+      ```
  
 * **Error Response:**
 
   * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
       "errorCode": "Unauthorized",
       "message": "Please login first"
-    }`
+    }
+    ```
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
         "errorCode": "Internal server error",
         "message": "Unexpected error."
-    }`
+    }
+    ```
 
-### `POST /budget/income`
+### `PUT /customers/:_id`
 
-> Create new Income
+> Update Status Customer is Served, ketika sudah ditangani, status jadi true(sudah ditangani)
 
 Request:
+
+- headers:
+
+```json
+{
+  "access_token": "req.headers access_token"
+}
+```
 
 - data:
 
 ```json
 {
-  "income": "string",
-  "detail": "string"
+  "_id": "objectid mongodb",
+  "status": "boolean"
 }
 ```
 
@@ -225,136 +367,27 @@ Response:
 
 ```json
 {
-  "UserId": "string",
-  "income": "integer",
-  "detail": "string",
-  "_id": "string-id",
-  "createdAt": "date"
+  "message": "string
 }
 ```
 
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{
-      "UserId": "60803b1f1a34192140d9a646",
-      "income": 1000000,
-      "detail": "Gajian",
-      "createdAt": "2021-04-21T20:37:15.931Z",
-      "_id": "60808cfba20df60c14d02324"
-    }`
- 
-* **Error Response:**
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{
-      "errorCode": "Validation error",
-      "message": "Input invalid"
-    }`
-
-  OR
-
-  * **Code:** 500 INTERNAL SERVER ERROR <br />
-    **Content:** `{
-        "errorCode": "Internal server error",
-        "message": "Unexpected error."
-    }`
-
-### `POST /budget/expense`
-
-> Create new Income
-
-Request:
-
-- data:
-
-```json
-{
-  "expense": "string",
-  "detail": "string"
-}
-```
-
-Response:
-
-- status: 201
-- body:
-  ​
-
-```json
-{
-  "UserId": "string",
-  "expense": "integer",
-  "detail": "string",
-  "_id": "string-id",
-  "createdAt": "date"
-}
-```
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `{
-      "UserId": "60803b1f1a34192140d9a646",
-      "expense": 1000000,
-      "detail": "Makan KFC",
-      "createdAt": "2021-04-21T20:37:51.515Z",
-      "_id": "60808d1fa20df60c14d02325"
-    }`
- 
-* **Error Response:**
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{
-      "errorCode": "Validation error",
-      "message": "Input invalid"
-    }`
-
-  OR
-
-  * **Code:** 500 INTERNAL SERVER ERROR <br />
-    **Content:** `{
-        "errorCode": "Internal server error",
-        "message": "Unexpected error."
-    }`
-
-### `DELETE /budget/:id`
-
-> Delete budget by Id 
-
-Request:
-
-- data:
-
-```json
-{
-  "_id": "string-id"
-}
-```
-
-Response:
-
-- status: 201
-- body:
-  ​
-
-```json
-{
-    "message": "string"
-}
-```
-
-* **Success Response:**
-
-  * **Code:** 200 OK <br />
-    **Content:** `{
-      "message": "Sucessfully deleted data Budget"
-    }`
+    **Content:** 
+    ```json
+    {
+      "message": "Update Customer is Served successfully"
+    }
+    ```
  
 * **Error Response:**
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
-    **Content:** `{
+    **Content:** 
+    ```json
+    {
         "errorCode": "Internal server error",
         "message": "Unexpected error."
-    }`
+    }
+    ```

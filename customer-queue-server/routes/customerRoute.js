@@ -8,8 +8,9 @@ const authorized = require('../middlewares/authorized.js')
 // Read List Customer
 router.get('/', authentication, authorized, CustomerController.readCustomer)
 // Add New Customer
-router.post('/income', authentication, authorized, CustomerController.createCustomer)
-// Find One List Customer by Product Id
-router.get('/:id', authentication, authorized, CustomerController.getCustomerByProductId)
+router.post('/', authentication, authorized, CustomerController.createCustomer)
+// Update Status Customer is Served, ketika sudah ditangani, status jadi true(sudah ditangani)
+router.put('/:_id', authentication, authorized, CustomerController.updateStatusIsServed)
+
 
 module.exports = router

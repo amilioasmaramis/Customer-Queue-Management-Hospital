@@ -4,7 +4,7 @@ const authorized = async (req, res, next) => {
   try {
     console.log(req.user, 'tanda req user authorize')
     const { email } = req.user
-    const user = await User.findOne(email)
+    const user = await Admin.findOne(email)
     if (!user) throw { name: 'error_404_user_not_found' }
     next()
   } catch (err) {

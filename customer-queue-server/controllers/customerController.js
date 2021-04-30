@@ -14,46 +14,52 @@ class CustomerController {
   static async createCustomer(req, res, next) {
     try {
       const { 
-        name, 
+        nama, 
         umur, 
         jenisKelamin, 
-        pekerjaan, 
+        pekerjaan,
+        namaIbu, 
         kota, 
         agama, 
-        GolDarah, 
+        golDarah, 
         noKtp, 
-        pekerjaan, 
-        tanggalDaftar
+        tujuanPasien
       } = req.body
+      if (!nama || !umur || !jenisKelamin || !pekerjaan || !kota || !namaIbu || !agama || !golDarah || !noKtp || !tujuanPasien ) throw { name: 'error_400_body_invalid' }
       const dataCustomer = await Customer.createCustomer({
-        name, 
+        nama, 
         umur, 
         jenisKelamin, 
-        pekerjaan, 
+        pekerjaan,
+        namaIbu, 
         kota, 
         agama, 
-        GolDarah, 
+        golDarah, 
         noKtp, 
-        pekerjaan, 
-        tanggalDaftar
+        tanggalDaftar: new Date(),
+        tujuanPasien,
+        status: false,
       })
-      res.status(201).json({dataCustomer})
-    } catch(err) {
-      next(err)
-    }
-  }
-  // Get Customer By Product Id
-  static async getCustomerByProductId(req, res, next) {
-    try {
-      const dataCustomerByProductId = await Customer.findOne({
-        ProductId: req.params.id
-      })
-      res.status(200).json({ dataCustomerByProductId })
+      res.status(201).json(dataCustomer.ops[0])
     } catch(err) {
       next(err)
     }
   }
   // Update Status Customer, ketika sudah ditangani, status jadi true(sudah ditangani)
+  static async updateStatusIsServed(req, res, next) {
+    try {
+      const updateCustomer = await Customer.updateStatusIsServed({
+        _id: req.params._id,
+        status: true
+      })
+      console.log(updateCustomer)
+      res.status(200).json({
+        message: "Update Customer is Served successfully"
+      })
+    } catch(err) {
+      next(err)
+    }
+  }
 }
 
 module.exports = CustomerController

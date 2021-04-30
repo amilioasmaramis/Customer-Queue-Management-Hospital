@@ -4,15 +4,21 @@ const { getDatabase } = require('../config/mongodb')
 class Customer {
   // Read Budget Data
   static readCustomer(id) {
-    return getDatabase().collection('Customers').find({ UserId: id.UserId }).sort({"createdAt": -1}).toArray()
+    return getDatabase().collection('Customers').find().sort({"tanggalDaftar": -1}).toArray()
   } 
   // Create budget income
-  static createCustomer(budget) {
-    return getDatabase().collection('Customers').insertOne(budget)
+  static createCustomer(payload) {
+    return getDatabase().collection('Customers').insertOne(payload)
   }
-  // Get Customer By Product Id
-  static getCustomerByProductId(_id) {
-    return getDatabase().collection('Customers').findOne({ ProductId: ObjectId(_id)})
+  // Update Status Customer, ketika sudah ditangani, status jadi true(sudah ditangani)
+  static updateStatusIsServed(payload) {
+    const filterId = { _id: ObjectId(payload._id) }
+    const updateData = {
+      $set: {
+        status: payload.status
+      }
+    }
+    return getDatabase().collection('Customers').updateOne(filterId, updateData)
   }
 
 }
