@@ -3,6 +3,16 @@ A "Customer Queue Management" for walk-in customer.
 
 CUSTOMER QUEUE MANAGEMENT is app app untuk mendaftarkan seorang pasien yang ingin berobat ke rumah sakit, and all the data is stored / fetched via REST API to backend server.
 
+## Live Url
+Deploying on Amazon AWS Client and Server
+- Client : http://customer-queue-app-amilio.s3-website-ap-southeast-1.amazonaws.com/
+```
+for example user account:
+- username : user@mail.com
+- password : user
+```
+- Server (API) : http://13.229.72.244:8001
+
 
 # Customer Queue Management App Server 
 
