@@ -3,7 +3,10 @@
 const initialState = {
   access_token: '',
   customers: [],
-  isLogin: false
+  customer: {},
+  isLogin: false,
+  dataSearch: [],
+  input: ''
 }
 
 function reducer(state = initialState, action) {
@@ -13,11 +16,21 @@ function reducer(state = initialState, action) {
     case 'ACCESS_TOKEN/SET_ACCESS_TOKEN':
       return { ...state, access_token: payload }
 
+    case "CUSTOMERS/SET_CUSTOMERS":
+      return { ...state, customers: JSON.parse(JSON.stringify(payload)) }
+
     case "CUSTOMER/SET_CUSTOMER":
       return { ...state, customers: JSON.parse(JSON.stringify(payload)) }
 
     case "LOGIN/SET_SETISLOGIN":
       return { ...state, isLogin: payload }
+
+    case "INPUTSEARCH/SETINPUTSEARCH":
+      return { ...state, input: payload}
+
+    case "SEARCH/SETSEARCHPASIEN":
+      return { ...state, dataSearch: payload}
+
     default:
       return state
   }
