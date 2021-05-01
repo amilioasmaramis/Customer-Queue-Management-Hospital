@@ -24,6 +24,10 @@ export function setSearch(payload) {
   return { type: "SEARCH/SETSEARCHPASIEN", payload}
 }
 
+export function addAntrian(payload) {
+  return { type: "ANTRIAN/SETANTRIAN", payload}
+}
+
 
 
 export function registerUser(payload) {

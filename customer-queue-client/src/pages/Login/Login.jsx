@@ -51,10 +51,10 @@ export default function Login() {
 
   return (
     <section>
-      <div class={active ? "container active" : "container"}>
-        <div class="user signinBx">
-          <div class="imgBx"><img src="https://images.unsplash.com/photo-1556742095-adaf2611556c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHJlZ2lzdGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" /></div>
-          <div class="formBx">
+      <div className={active ? "container active" : "container"}>
+        <div className="user signinBx">
+          <div className="imgBx"><img src="https://images.unsplash.com/photo-1556742095-adaf2611556c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHJlZ2lzdGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" /></div>
+          <div className="formBx">
             <form action="" onSubmit={(e) => handleSubmitLogin(e)}>
               <h2>Sign In</h2>
               <input 
@@ -72,15 +72,15 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <input type="submit" name="" value="Login" />
-              <p class="signup">
+              <p className="signup">
                 Don't have an account ?
                 <a href="#" onClick={signUpClick}>Sign Up.</a>
               </p>
             </form>
           </div>
         </div>
-        <div class="user signupBx">
-          <div class="formBx">
+        <div className="user signupBx">
+          <div className="formBx">
             <form action="" onSubmit={(e) => handleSubmitRegister(e)}>
               <h2>Create an account</h2>
               <input 
@@ -111,13 +111,13 @@ export default function Login() {
                 required 
               />
               <input type="submit" name="" value="Sign Up" />
-              <p class="signup">
+              <p className="signup">
                 Already have an account ?
                 <a href="#" onClick={signInClick}>Sign in.</a>
               </p>
             </form>
           </div>
-          <div class="imgBx"><img src="https://images.unsplash.com/photo-1556742208-999815fca738?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHJlZ2lzdGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" /></div>
+          <div className="imgBx"><img src="https://images.unsplash.com/photo-1556742208-999815fca738?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHJlZ2lzdGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" /></div>
         </div>
       </div>
     </section>

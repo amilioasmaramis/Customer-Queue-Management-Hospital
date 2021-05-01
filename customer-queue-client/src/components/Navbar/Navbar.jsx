@@ -22,17 +22,17 @@ export default function Navbar() {
   }
 
   return (
-    <nav class="navbar">
-      <span onClick={responsiveClickNavbar} class="navbar-toggle" id="js-navbar-toggle">
-        <i class="fas fa-bars"></i>
+    <nav className="navbar">
+      <span onClick={responsiveClickNavbar} className="navbar-toggle" id="js-navbar-toggle">
+        <i className="fas fa-bars"></i>
       </span>
-      <a href="#" class="logo">Hospital</a>
-      <ul class="main-nav" id="js-menu-active">
+      <a href="#" className="logo">Hospital</a>
+      <ul className="main-nav" id="js-menu-active">
         <li>
-          <a href="#" class="nav-links">Visitor</a>
+          <a href="#" className="nav-links">Visitor</a>
         </li>
         <li>
-          <a onClick={(e) => logout(e)} class="nav-links">Logout</a>
+          <a onClick={(e) => logout(e)} className="nav-links">Logout</a>
         </li>
       </ul>
     </nav>

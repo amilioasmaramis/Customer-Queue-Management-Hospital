@@ -6,7 +6,8 @@ const initialState = {
   customer: {},
   isLogin: false,
   dataSearch: [],
-  input: ''
+  input: '', 
+  antrian: []
 }
 
 function reducer(state = initialState, action) {
@@ -30,6 +31,9 @@ function reducer(state = initialState, action) {
 
     case "SEARCH/SETSEARCHPASIEN":
       return { ...state, dataSearch: payload}
+
+    case "ANTRIAN/SETANTRIAN":
+      return { ...state, antrian: [ ...state.antrian, payload]}
 
     default:
       return state

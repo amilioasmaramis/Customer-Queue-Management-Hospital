@@ -28,7 +28,7 @@ export default function Customer({ customers }) {
 
   return (
     <div>
-      <h2 style={{ marginTop: "2rem"}}>List Visitor Pasien Solusi Teknologi Hospital</h2>
+      <h2 style={{ marginTop: "2rem"}}>List Visitor Pasien Rumah Sakit</h2>
       <div className="container">
         <div className="d-flex justify-content-center">
           <div className="m-2">
@@ -39,11 +39,11 @@ export default function Customer({ customers }) {
           </div>    
         </div>
       </div> 
-      <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-add-product" data-bs-toggle="modal" data-bs-target="#example-Modal" data-bs-whatever="@getbootstrap">Add Pasien</button>
+      <div className="d-flex justify-content-end">
+        <button type="button" className="btn btn-add-product" data-bs-toggle="modal" data-bs-target="#example-Modal" data-bs-whatever="@getbootstrap">Add Pasien</button>
         <AddModal />
       </div>
-      <table class="responsive-table">
+      <table className="responsive-table">
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -66,7 +66,7 @@ export default function Customer({ customers }) {
           {
             customers.map((customer, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <th scope="row">{index+1}</th>
                   <th scope="row">{customer.nama}</th>
                   <td data-title="Released">{customer.umur}</td>
@@ -81,7 +81,7 @@ export default function Customer({ customers }) {
                   <td data-title="Budget" data-type="currency">{customer.tujuanPasien}</td>
                   <td data-title="Budget" data-type="currency">{customer.status ? "Sudah ditangani" : "Belum ditangani"}</td>
                   <td data-title="Budget" data-type="currency">
-                    <button onClick={(e) => isServedButton(e, customer._id)} type="button" class="btn btn-outline-success">IsServed</button>
+                    <button onClick={(e) => isServedButton(e, customer._id)} type="button" className="btn btn-outline-success">IsServed</button>
                   </td>
                 </tr>
               )
