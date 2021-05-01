@@ -68,19 +68,19 @@ export default function Customer({ customers }) {
               return (
                 <tr key={index}>
                   <th scope="row">{index+1}</th>
-                  <th scope="row">{customer.nama}</th>
-                  <td data-title="Released">{customer.umur}</td>
-                  <td data-title="Studio">{customer.jenisKelamin}</td>
-                  <td data-title="Worldwide Gross" data-type="currency">{customer.pekerjaan}</td>
-                  <td data-title="Domestic Gross" data-type="currency">{customer.namaIbu}</td>
-                  <td data-title="Foreign Gross" data-type="currency">{customer.kota}</td>
-                  <td data-title="Budget" data-type="currency">{customer.agama}</td>
-                  <td data-title="Budget" data-type="currency">{customer.golDarah}</td>
-                  <td data-title="Budget" data-type="currency">{customer.noKtp}</td>
-                  <td data-title="Budget" data-type="currency">{customer.tanggalDaftar}</td>
-                  <td data-title="Budget" data-type="currency">{customer.tujuanPasien}</td>
-                  <td data-title="Budget" data-type="currency">{customer.status ? "Sudah ditangani" : "Belum ditangani"}</td>
-                  <td data-title="Budget" data-type="currency">
+                  <th data-title="Nama" scope="row">{customer.nama}</th>
+                  <td data-title="Umur">{customer.umur}</td>
+                  <td data-title="Jenis Kelamin">{customer.jenisKelamin}</td>
+                  <td data-title="Pekerjaan" data-type="currency">{customer.pekerjaan}</td>
+                  <td data-title="Nama Ibu" data-type="currency">{customer.namaIbu}</td>
+                  <td data-title="Kota" data-type="currency">{customer.kota}</td>
+                  <td data-title="Agama" data-type="currency">{customer.agama}</td>
+                  <td data-title="Gol. Darah" data-type="currency">{customer.golDarah}</td>
+                  <td data-title="No. KTP" data-type="currency">{customer.noKtp}</td>
+                  <td data-title="Tanggal Daftar" data-type="currency">{customer.tanggalDaftar}</td>
+                  <td data-title="Tujuan Pasien" data-type="currency">{customer.tujuanPasien}</td>
+                  <td data-title="Status Pelayanan" data-type="currency">{customer.status ? "Sudah ditangani" : "Belum ditangani"}</td>
+                  <td data-title="Actions" data-type="currency">
                     <button onClick={(e) => isServedButton(e, customer._id)} type="button" className="btn btn-outline-success">IsServed</button>
                   </td>
                 </tr>
